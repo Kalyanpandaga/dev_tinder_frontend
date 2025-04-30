@@ -1,9 +1,4 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: light ----prefersligth, dark --default;
-  root: ":root";
-  include: ;
-  exclude: ;
-  prefix: ;
-  logs: false;
+  themes: dark --default, abyss --prefersdark, cupcake, dracula;
 }
