@@ -6,6 +6,7 @@ import { addFeed } from "../utils/feedSlice";
 import FeedCard from "./FeedCard";
 
 const Feed = () => {
+  const feedData = useSelector((store) => store.feed);
   const dispatch = useDispatch();
   const fetchFeedData = async () => {
     try {
@@ -19,10 +20,23 @@ const Feed = () => {
   };
 
   useEffect(() => {
-    fetchFeedData();
+    if (!feedData) {
+      fetchFeedData();
+    }
   }, []);
 
-  const feedData = useSelector((store) => store.feed);
+  if (!feedData) return;
+
+  if (feedData.length === 0) {
+    return (
+      <div className="text-center p-10">
+        <h1 className="text-white text-2xl my-2">
+          Currently there are no suggestions for you.
+        </h1>
+        <p className="text-white text-xl"> please wait some time. </p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex justify-center p-10">

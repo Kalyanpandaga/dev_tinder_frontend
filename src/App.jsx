@@ -3,10 +3,11 @@ import { Provider } from "react-redux";
 import "./App.css";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
-import Testing from "./components/Testing";
+import Requests from "./components/Requests";
 import Body from "./components/Body";
-import appStore from "./utils/appStore";
 import Feed from "./components/feed";
+import appStore from "./utils/appStore";
+import Connections from "./components/Connections";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
           <Route path="/" element={<Body />}>
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/testing" element={<Testing />} />
+            <Route path="/requests" element={<Requests />} />
+            <Route path="/connections" element={<Connections />} />
             <Route index path="/" element={<Feed />} />
           </Route>
         </Routes>

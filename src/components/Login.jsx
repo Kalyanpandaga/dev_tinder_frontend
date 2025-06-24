@@ -28,7 +28,6 @@ const Login = () => {
       const response = await axios.post(url, loginData, {
         withCredentials: true,
       });
-
       const userData = await response.data.userData;
       dispatch(addUser(userData));
       return navigate("/");
