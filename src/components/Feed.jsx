@@ -20,9 +20,7 @@ const Feed = () => {
   };
 
   useEffect(() => {
-    if (!feedData) {
-      fetchFeedData();
-    }
+    fetchFeedData();
   }, []);
 
   if (!feedData) return;

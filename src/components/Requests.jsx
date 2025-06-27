@@ -5,7 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { addConnectionRequests } from "../utils/requestSlice";
 
 const Requests = () => {
-  const connectionRequestsList = useSelector((store) => store.requests);
+  const connectionRequestsList = useSelector(
+    (store) => store.connectionRequests
+  );
   const dispatch = useDispatch();
   const fetchConnectionRequests = async () => {
     try {
@@ -25,7 +27,9 @@ const Requests = () => {
   if (!connectionRequestsList) return;
   if (connectionRequestsList.length === 0)
     return (
-      <h1 className="text-5xl text-center">There are No Connection Requests</h1>
+      <h1 className="text-3xl text-center my-20">
+        There are No Connection Requests
+      </h1>
     );
 
   return (
@@ -42,6 +46,27 @@ const Requests = () => {
           gender,
         } = eachRequest.fromUserId;
 
+        const requestReviewed = async (status) => {
+          try {
+            const requestId = eachRequest._id;
+            const url = `${BASE_URL}/request/review/${status}/${requestId}`;
+            await axios.patch(url, {}, { withCredentials: true });
+            fetchConnectionRequests();
+          } catch (err) {
+            console.log(err);
+          }
+        };
+
+        const onClickReject = () => {
+          const status = "rejected";
+          requestReviewed(status);
+        };
+
+        const onClickAccept = () => {
+          const status = "accepted";
+          requestReviewed(status);
+        };
+
         return (
           <div
             className="w-1/2 flex bg-base-300 m-3 px-2 py-4 items-center justify-between"
@@ -54,7 +79,7 @@ const Requests = () => {
                 alt="profile"
               />
             </div>
-            <div className="">
+            <div className="w-4/7">
               <h1 className="text-xm text-white ">
                 {firstName + " " + lastName}
               </h1>
@@ -62,8 +87,16 @@ const Requests = () => {
               <p> {description} </p>
             </div>
             <div>
-              <button className="btn btn-active btn-accent mx-2">Accept</button>
-              <button className="btn btn-active btn-warning  mx-2">
+              <button
+                className="btn btn-active btn-accent mx-2"
+                onClick={onClickAccept}
+              >
+                Accept
+              </button>
+              <button
+                className="btn btn-active btn-warning  mx-2"
+                onClick={onClickReject}
+              >
                 Reject
               </button>
             </div>

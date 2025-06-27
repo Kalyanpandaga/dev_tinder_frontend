@@ -24,7 +24,9 @@ const Connection = () => {
 
   if (!connectionsList) return;
   if (connectionsList.length === 0)
-    return <h1 className="text-5xl text-center"> There are No Connections </h1>;
+    return (
+      <h1 className="text-3xl my-24 text-center"> There are No Connections </h1>
+    );
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -42,7 +44,7 @@ const Connection = () => {
 
         return (
           <div
-            className="w-1/2 flex bg-base-300 m-3 p-4 items-center"
+            className="w-1/3 flex bg-base-300 m-3 p-4 items-center"
             key={_id}
           >
             <div className="mx-2">
@@ -52,7 +54,7 @@ const Connection = () => {
                 alt="profile"
               />
             </div>
-            <div className="">
+            <div className="w-4/5 mx-2">
               <h1 className="text-xm text-white ">
                 {firstName + " " + lastName}
               </h1>
