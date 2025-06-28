@@ -5,7 +5,7 @@ import Login from "./components/Login";
 import Profile from "./components/Profile";
 import Requests from "./components/Requests";
 import Body from "./components/Body";
-import Feed from "./components/feed";
+import Feed from "./components/Feed";
 import appStore from "./utils/appStore";
 import Connections from "./components/Connections";
 

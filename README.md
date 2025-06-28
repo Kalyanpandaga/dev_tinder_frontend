@@ -99,6 +99,20 @@ from datatime import datetime, date, timedelta
 
 react
 
+Architecture & Core Concepts
+What are the limitations of React in large-scale apps?
+How does the Virtual DOM work in React, and why does it matter?
+Can React Hooks replace Redux? Why or why not?
+Best practices for managing state at scale?
+Performance optimization in apps with deep component trees?
+What's React Strict Mode and why should you care?
+⚙️ Re-renders & Hooks Mastery 7. How to prevent unnecessary re-renders in functional components? 8. Key differences: functional vs class components? 9. Why is React Fiber important? 10. Managing side effects the right way 11. useMemo() vs useCallback() – real use cases
+🧩 Forms, Effects & Async Logic 12. Handling dynamic forms + validation? 13. Lazy loading in React – when & why 14. Error boundaries + graceful error handling 15. SSR benefits and trade-offs 16. Styling approaches in React – CSS Modules, Styled Components, etc. 17. Passing data between siblings without Redux
+🌐 Data Fetching & Routing 18. Using useEffect() to fetch API data 19. Handling async operations using async/await 20. Window resize handling and re-renders 21. When & how to use Context API for state 22. How React Router handles dynamic routes?
+🕹️ Advanced Patterns 23. Controlled vs uncontrolled components 24. Optimizing performance for large lists/grids 25. Shallow vs deep comparison in shouldComponentUpdate() 26. Async code execution + state update patterns 27. Creating and using custom hooks 28. What are HOCs (Higher-Order Components)? 29. Debounced search – how would you build it? 30. React’s reconciliation process in simple terms
+
+💡 Whether you're interviewing or hiring React devs — these questions spark real discussions about code quality, performance, and architecture.
+
 # React Interview Questions and Answers (Top 70)
 
 A comprehensive collection of 70 essential React interview questions and answers, designed to help you prepare effectively for full-stack and front-end interviews.
