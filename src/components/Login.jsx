@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { BASE_URL } from "../utils/constants";
+import { API_BASE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router";
@@ -35,7 +35,7 @@ const Login = () => {
     e.preventDefault();
     setErrorMessage("");
     try {
-      const url = BASE_URL + "/login";
+      const url = API_BASE_URL + "/login";
       const loginData = { emailId, password };
       const response = await axios.post(url, loginData, {
         withCredentials: true,
@@ -53,7 +53,7 @@ const Login = () => {
     e.preventDefault();
     setErrorMessage("");
     try {
-      const url = BASE_URL + "/signup";
+      const url = API_BASE_URL + "/signup";
       const response = await axios.post(
         url,
         { firstName, lastName, emailId, password },

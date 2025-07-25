@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FeedCard from "./FeedCard";
 import axios from "axios";
-import { BASE_URL } from "../utils/constants";
+import { API_BASE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 
@@ -18,6 +18,8 @@ const EditProfile = (props) => {
   const [showProfileUpdateMsg, setShowProfileUpdateMsg] = useState(false);
   const dispatch = useDispatch();
 
+  console.log(showProfileUpdateMsg);
+
   const saveProfile = async (e) => {
     e.preventDefault();
     setErrorMessage("");
@@ -31,7 +33,7 @@ const EditProfile = (props) => {
         description,
       };
       const response = await axios.put(
-        BASE_URL + "/profile/edit",
+        API_BASE_URL + "/profile/edit",
         updatedData,
         {
           withCredentials: true,
@@ -49,9 +51,9 @@ const EditProfile = (props) => {
 
   return (
     <>
-      <div className="flex my-20 justify-center gap-5">
-        <div className="flex justify-center">
-          <div className="card bg-base-200 w-96 shadow-sm">
+      <div className="flex flex-col md:flex-row my-20 gap-5 justify-center items-center md:items-stretch">
+        <div>
+          <div className="card bg-base-100 w-80 shadow-sm flex-1">
             <form className="card-body" onSubmit={saveProfile}>
               <h2 className="card-title m-auto"> Edit Profile </h2>
               <fieldset className="fieldset">
@@ -86,9 +88,8 @@ const EditProfile = (props) => {
                   required
                 />
               </fieldset>
-
               <fieldset className="fieldset">
-                <legend className="text-xs fieldset-legend"> Age: </legend>
+                <legend className="text-xs fieldset-legend">Age:</legend>
                 <input
                   type="text"
                   className="input"
@@ -97,7 +98,7 @@ const EditProfile = (props) => {
                   required
                 />
               </fieldset>
-              <label className="text-xs fieldset-legend"> Gender: </label>
+              <label className="text-xs fieldset-legend">Gender:</label>
               <select
                 value={gender || ""}
                 onChange={(e) => setGender(e.target.value)}
@@ -128,17 +129,21 @@ const EditProfile = (props) => {
             </form>
           </div>
         </div>
-        <FeedCard
-          feed={{ firstName, lastName, profileUrl, gender, age, description }}
-        />
-      </div>
-      {showProfileUpdateMsg && (
-        <div className="toast toast-top toast-center">
-          <div className="alert alert-success">
-            <span>Profile Updated Successfully.</span>
-          </div>
+
+        <div className="flex-1 max-w-md flex">
+          <FeedCard
+            feed={{ firstName, lastName, profileUrl, gender, age, description }}
+          />
         </div>
-      )}
+
+        {showProfileUpdateMsg && (
+          <div className="toast toast-top toast-center z-[9999]">
+            <div className="alert alert-success">
+              <span>Profile Updated Successfully.</span>
+            </div>
+          </div>
+        )}
+      </div>
     </>
   );
 };

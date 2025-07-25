@@ -1,5 +1,5 @@
 import React from "react";
-import { BASE_URL } from "../utils/constants";
+import { API_BASE_URL } from "../utils/constants";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { removeUserFromFeed } from "../utils/feedSlice";
@@ -13,7 +13,7 @@ const FeedCard = (props) => {
 
   const handleSendRequest = (status) => {
     try {
-      const url = BASE_URL + "/request/send/" + status + "/" + _id;
+      const url = API_BASE_URL + "/request/send/" + status + "/" + _id;
       axios.post(url, {}, { withCredentials: true });
       dispatch(removeUserFromFeed(_id));
     } catch (err) {
