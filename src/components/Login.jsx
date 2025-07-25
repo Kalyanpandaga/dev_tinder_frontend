@@ -69,7 +69,7 @@ const Login = () => {
   };
   return (
     <div className="flex justify-center my-15">
-      <div className="card bg-base-200 w-96 shadow-sm">
+      <div className="card bg-base-100 w-96 shadow-sm">
         <form
           className="card-body"
           onSubmit={isLoginForm ? onSumbitLogin : onSubmitSignUp}

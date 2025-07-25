@@ -18,8 +18,6 @@ const EditProfile = (props) => {
   const [showProfileUpdateMsg, setShowProfileUpdateMsg] = useState(false);
   const dispatch = useDispatch();
 
-  console.log(showProfileUpdateMsg);
-
   const saveProfile = async (e) => {
     e.preventDefault();
     setErrorMessage("");
