@@ -8,7 +8,7 @@ import Body from "./components/Body";
 import Feed from "./components/Feed";
 import appStore from "./utils/appStore";
 import Connections from "./components/Connections";
-import Premium from "./components/premium";
+import Premium from "./components/Premium";
 import Chat from "./components/Chat";
 
 function App() {
