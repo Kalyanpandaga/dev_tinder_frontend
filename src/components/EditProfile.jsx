@@ -49,7 +49,7 @@ const EditProfile = (props) => {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row my-20 gap-5 justify-center items-center md:items-stretch">
+      <div className="flex flex-col md:flex-row my-10 gap-5 justify-center items-center md:items-stretch">
         <div>
           <div className="card bg-base-100 w-80 shadow-sm flex-1">
             <form className="card-body" onSubmit={saveProfile}>
