@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { API_BASE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
@@ -6,14 +6,21 @@ import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router";
 
 const Login = () => {
-  const [emailId, setEmailId] = useState("");
-  const [password, setPassword] = useState("");
+  const [emailId, setEmailId] = useState("kalyan@gmail.com");
+  const [password, setPassword] = useState("Kalyan@123");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [isLoginForm, setIsLoginFrom] = useState(true);
   const [errorMsg, setErrorMessage] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoginForm) {
+      setEmailId("");
+      setPassword("");
+    }
+  }, [isLoginForm]);
 
   const onChangeEmailId = (e) => {
     setEmailId(e.target.value);

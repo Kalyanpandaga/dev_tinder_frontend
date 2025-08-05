@@ -14,6 +14,8 @@ const EditProfile = (props) => {
   const [age, setAge] = useState(user.age || "");
   const [gender, setGender] = useState(user.gender || "");
   const [description, setDescription] = useState(user.description || "");
+  const [skillInput, setSkillInput] = useState("");
+  const [skills, setSkills] = useState(user.skills || []);
   const [errorMsg, setErrorMessage] = useState("");
   const [showProfileUpdateMsg, setShowProfileUpdateMsg] = useState(false);
   const dispatch = useDispatch();
@@ -29,6 +31,7 @@ const EditProfile = (props) => {
         age,
         gender,
         description,
+        skills,
       };
       const response = await axios.put(
         API_BASE_URL + "/profile/edit",
@@ -47,11 +50,23 @@ const EditProfile = (props) => {
     }
   };
 
+  const addSkill = () => {
+    const trimmed = skillInput.trim();
+    if (trimmed && !skills.includes(trimmed) && skills.length < 10) {
+      setSkills([...skills, trimmed]);
+      setSkillInput("");
+    }
+  };
+
+  const removeSkill = (skillToRemove) => {
+    setSkills(skills.filter((skill) => skill !== skillToRemove));
+  };
+
   return (
     <>
       <div className="flex flex-col md:flex-row my-10 gap-5 justify-center items-center md:items-stretch">
         <div>
-          <div className="card bg-base-100 w-80 shadow-sm flex-1">
+          <div className="card bg-base-100 w-90 shadow-sm flex-1">
             <form className="card-body" onSubmit={saveProfile}>
               <h2 className="card-title m-auto"> Edit Profile </h2>
               <fieldset className="fieldset">
@@ -110,6 +125,42 @@ const EditProfile = (props) => {
                 <option value="female">Female</option>
                 <option value="others">Others</option>
               </select>
+              <div>
+                <label className="block mb-1 font-semibold">
+                  Skills (max 10)
+                </label>
+                <div className="flex gap-2 mb-2">
+                  <input
+                    type="text"
+                    value={skillInput}
+                    onChange={(e) => setSkillInput(e.target.value)}
+                    onKeyDown={(e) =>
+                      e.key === "Enter"
+                        ? (e.preventDefault(), addSkill())
+                        : null
+                    }
+                    className="flex-1 p-2 border rounded"
+                    placeholder="Enter a skill and press Enter"
+                  />
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {skills.map((skill, index) => (
+                    <span
+                      key={index}
+                      className="bg-emerald-800 text-xs font-semibold p-2 py-1 rounded-full flex items-center gap-2"
+                    >
+                      {skill}
+                      <button
+                        type="button"
+                        onClick={() => removeSkill(skill)}
+                        className="text-red-500 hover:text-red-700"
+                      >
+                        &times;
+                      </button>
+                    </span>
+                  ))}
+                </div>
+              </div>
               <label className="text-xs fieldset-legend">Description:</label>
               <textarea
                 className="textarea"
@@ -130,7 +181,15 @@ const EditProfile = (props) => {
 
         <div className="flex-1 max-w-md flex">
           <FeedCard
-            feed={{ firstName, lastName, profileUrl, gender, age, description }}
+            feed={{
+              firstName,
+              lastName,
+              profileUrl,
+              gender,
+              age,
+              description,
+              skills,
+            }}
           />
         </div>
 
